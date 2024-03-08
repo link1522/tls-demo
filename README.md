@@ -14,3 +14,7 @@
 
 `openssl req -new -key server-key.pem -x509 -days 365 -out server-cert.pem`
 `
+
+## connect by curl
+
+`curl -ki https://127.0.0.1:8080 --cert client-cert.pem --key client-key.pem`

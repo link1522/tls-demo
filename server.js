@@ -12,10 +12,18 @@ const server = tls.createServer({
 server.on('secureConnection', socket => {
   console.log('Client connected');
 
-  socket.on('data', data => {
-    console.log('Received data from client:', data.toString());
+  // socket.write('welcome');
 
-    socket.write('Hello, client!');
+  socket.on('data', data => {
+    console.log('Received data from client: \n', data.toString());
+
+    // 按照 response 規範返回
+    const response =
+      'HTTP/1.1 200 OK\r\n' +
+      'Content-Type: text/plain\r\n' +
+      '\r\n' +
+      'Hello, client!\r\n';
+    socket.write(response);
 
     // 斷開 client 連線
     socket.end();
